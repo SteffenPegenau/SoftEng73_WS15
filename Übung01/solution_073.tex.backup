@@ -1,0 +1,166 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{fullpage}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{newclude}
+\usepackage{multirow}
+\pagestyle{empty}
+
+
+\lstset{ %
+  %backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  %basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  %breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  %captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\bf,    % comment style
+  %deletekeywords={...},            % if you want to delete keywords from the given language
+  %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  %extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,                    % adds a frame around the code
+  %keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  %keywordstyle=\color{blue},       % keyword style
+  language=Java,                 % the language of the code
+  %otherkeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  %numbersep=5pt,                   % how far the line-numbers are from the code
+  %numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  %rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  %showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  %showstringspaces=false,          % underline spaces within strings only
+  %showtabs=false,                  % show tabs within strings adding particular underscores
+  %stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  %stringstyle=\color{mymauve},     % string literal style
+  tabsize=4,                       % sets default tabsize to 2 spaces
+  %title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+\begin{document}
+\hfill \\
+Adam Shafei \hfill Len Williamson \hfill Steffen Pegenau
+\section*{1. Übungszettel in Software Engineering}
+
+\subsection*{Tatsächlich benötigte Zeit}
+\subsubsection*{Übersicht}
+\begin{tabular}{|l|l|l|l|l|}
+ \hline
+ \textbf{Klasse} & \textbf{Schätzung [h]} & \textbf{Realität [h]} & \textbf{Differenz  [h]}& \textbf{Realität/Schätzung} \\
+ \hline
+ GUIConsole & 6,25 & 13 & 6,75 & 2,08 \\
+ \hline
+ DotsNBoxesEngine & 7,5 & 10 & 2,5 & 1,33 \\
+ \hline
+ Player & 0,5 & 0,5 & 0 & 1 \\
+ \hline
+ \hline
+ \textbf{Summe} & 14,25 & 23,5 & 9,25 & 1,62\\
+ \hline
+ \end{tabular} \hfill \\[0.5cm]
+ Wir benötigten ca. 62\% mehr Zeit als prognostiziert. Lehren: WIr haben unsere Fähigkeiten überschätzt. Durch die Erfahrung hoffen wir, die Komplexität künftiger Aufgaben realistischer einschätzen und die Disk
+
+\subsubsection*{Klasse GUIConsole}
+\begin{tabular}{|l|l|l|p{0.4\linewidth}|}
+ \hline
+ \textbf{Aufgabe} & \textbf{Schätzung [h]} & \textbf{Realität [h]} & \textbf{Begründung} \\
+ \hline
+ Eingabe & 0,75 & 4,5 & Zunächst entstanden viele Redundanzen, sodass es schwierig war, Optimierungen (an vielen Stellen) umzusetzen. Außerdem machte die Stream-Natur des Inputs Probleme bei der Prüfung (Öffnen und Schließen des Inputs sorgte für Endlosschleife.\\
+ \hline
+ Darstellung Spielfeld & 1 & 1 & \\
+ \hline
+ Anzeige & 0,5 & 1,5 & Doppeltes Hochzählen um aktuellen Spieler zu ermitteln führte zu eine Null-Pointer-Exception, die nicht direkt gefunden wurde. \\
+ \hline
+ Tests & 2,5 & 3 & Schnittstellen zwischen Klassen waren zunächst zu undeutlich abgestimmt. Dadurch war es schwierig brauchbare Tests zu schreiben. In Folge wurde viel manuell getestet, was viel Zeit in Anspruch nahm. \\
+ \hline
+ Fehlerkorrekturen & 1,5 & 3 & Es gab unerwartet viel zu optimieren. \\
+ \hline
+ \hline
+ \textbf{Summe} & 6,25 & 13 & Abweichung: 6,75h\\
+ \hline
+\end{tabular}
+\subsubsection*{Klasse DotsNBoxesEngine}
+\begin{tabular}{|l|l|l|p{0.4\linewidth}|}
+ \hline
+ \textbf{Aufgabe} & \textbf{Schätzung [h]} & \textbf{Realität [h]} & \textbf{Begründung} \\
+ \hline
+ Datenstruktur Karte & 1 & 1 & \\
+ Zug durchführen & 2 & 4 & Es hat viel Zeit gekostet zu ermitteln, welcher Spieler als nächstes an der Reihe ist.\\
+ Punkteverwaltung & 0,5 & 0,5 & \\
+  Tests & 2,5 & 3 & siehe Klasse GUIConsole \\
+ \hline
+ Fehlerkorrekturen & 1,5 & 1,5 &  \\
+ \hline
+ \hline
+ \textbf{Summe} & 7,5 & 10 & Abweichung: 2,5h\\
+ \hline
+\end{tabular}
+\subsubsection*{Klasse Player}
+Genau wie erwartet. Wenig Aufwand.
+
+\subsubsection*{Teilaufgaben und Schätzungen}
+\begin{tabular}{|p{0.35\textwidth}|p{0.44\textwidth}|p{0.15\textwidth}|}
+ \hline
+ \textbf{Aufgabe} & \textbf{Begründung/Kommentar} & \textbf{Schätzung [h]} \\
+ \hline
+
+
+ \textbf{Klasse GUIConsole} & Starten, Einstellen, Spielen & \textbf{SUMME: 6,25}\\
+ \hline
+ \-- Eingabe & \multirow{5}{0.4\textwidth}{Einarbeitung in Eingabemethoden auf der Konsole Konsole, gemäß Erfahrung geringe Komplexität, schnell umsetzbar} & \multirow{5}{0.15\textwidth}{0,75} \\
+ \-- \-- Spieleranzahl & &\\
+ \-- \-- Spielfelddimensionen & &\\
+ \-- \-- Spielernamen & &\\
+ \-- \-- Zug (Spieler x setzt Wand y) & &\\
+ \hline
+ \-- Darstellung Spielfeld & Darstellung soll Datenstruktur der Karte interpretieren, sodass eine Anpassung der Darstellung möglich ist, ohne die Datenstruktur grundsätzlich zu ändern. Darstellung muss sich bei großen Feldern anpassen. & 1 \\
+ \hline
+ \-- Anzeige & \multirow{4}{0.4\textwidth}{Anzeige zum richtigen Zeitpunkt, sonst keine besondere Komplexität. Inhalte werden über Methoden der jeweiligen Klassen gut abrufbar sein.} & \multirow{4}{0.15\textwidth}{0,5} \\
+ \-- \-- Punkte & &\\
+ \-- \-- Gewinner & &\\
+ \-- \-- Zugzahl & &\\
+ \hline
+ \--  Tests schreiben & Schwierig, da möglichst viele Fälle (umfangreich) abgedeckt sein müssen und Übung fehlt. Erfordert viel Kreativität. & 2,5\\
+ \hline
+ \-- Fehlerkorrekturen \& Optimierungen & Etwas geringere Komplexität als die Tests. Nachdem die Tests laufen, sollten nicht mehr viele Korrekturen/Optimierungen nötig sein & 1,5\\
+ \hline
+ \multicolumn{3}{l}{} \\
+ \hline
+ \textbf{Klasse DotsNBoxesEngine} & Einhaltung der Regeln, Verwaltung des Spielstandes, Punkteberechnung & \textbf{SUMME: 7,5} \\
+ \hline
+ \-- Datenstruktur Karte (2D-Array) mit Initialisierung & Grundsätzliche geringe Komplexität, aber durch Zweidimensionalität wenig intuitiv & 1 \\
+ \hline
+ \-- Zug durchführen (boolean: true, wenn Zug erfolgreich) & \multirow{6}{0.4\textwidth}{Höchste Komplexität, da hier die komplette Spiellogik liegt (die zuerst verstanden sein muss) und viele Hilfsmethoden geschrieben werden müssen.} & 2\\
+ \-- \-- Ist der Spieler an der Reihe? & &\\
+ \-- \-- Ist Zug gültig? &  &\\
+ \-- \-- Ist Käsekästchen voll? &  &\\
+ \-- \-- Ist das Spiel beendet? &  &\\
+ \-- \-- Wer ist als nächstes an der Reihe? &  &\\
+ \hline
+ \-- Punkteverwaltung & Geringe Komplexität, da es sich gut über getter und setter der Klasse Player umsetzen lässt & 0,5\\
+ \hline
+ \-- Tests schreiben & Wie in Klasse GUIConsole &  2,5\\
+ \hline
+ \-- Fehlerkorrekturen & Wie in Klasse GUIConsole & 1,5 \\
+ \hline
+  \multicolumn{3}{l}{} \\[0.01cm]
+ \hline
+ \textbf{Klasse Player} & Verwaltung Name, Punktestand & \textbf{SUMME: 0,5} \\
+ \hline
+ \-- Name setzen & \multirow{7}{0.4\textwidth}{Im Grunde nur getter- und setter-Methoden. Daher sehr geringe Komplexität} & \\
+ \-- Name holen & &\\
+ \-- Punkte setzen & &\\
+ \-- Punkte holen & &\\
+ \-- Punkte erhöhen um Wert x & &\\
+ \-- Tests schreiben & &\\
+ \-- Fehlerkorrekturen & &\\
+ \hline
+ \hline
+ \textbf{GESAMTZEIT} & &  \textbf{14,25} \\
+ \hline
+\end{tabular}
+\end{document}

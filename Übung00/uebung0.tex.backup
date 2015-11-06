@@ -1,0 +1,111 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{fullpage}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{newclude}
+
+\lstset{ %
+  %backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  %basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  %breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  %captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\bf,    % comment style
+  %deletekeywords={...},            % if you want to delete keywords from the given language
+  %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  %extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,                    % adds a frame around the code
+  %keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  %keywordstyle=\color{blue},       % keyword style
+  language=Java,                 % the language of the code
+  %otherkeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  %numbersep=5pt,                   % how far the line-numbers are from the code
+  %numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  %rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  %showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  %showstringspaces=false,          % underline spaces within strings only
+  %showtabs=false,                  % show tabs within strings adding particular underscores
+  %stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  %stringstyle=\color{mymauve},     % string literal style
+  tabsize=4,                       % sets default tabsize to 2 spaces
+  %title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+\begin{document}
+\hfill \\
+Adam Shafei \hfill Len Williamson \hfill Steffen Pegenau
+\section*{0. Übungszettel in Software Engineering}
+
+\subsection*{Aufgabe 3: Erste Berührungspunkte mit der JVM}
+\begin{lstlisting}[caption={Methode \textit{isInitValueValid} mit Parameter vom Typ
+\textit{Integer}},label=lst:validValueInt,language=Java]
+/**
+ * This method has been defined to allow the sub-classes
+ * of SnmpInt to perform their own control at intialization time.
+ */
+boolean isInitValueValid(int v) {
+  if ((v < Integer.MIN_VALUE) || (v > Integer.MAX_VALUE)) {
+    return false;
+  }
+  return true;
+}
+\end{lstlisting}
+\begin{lstlisting}[caption={Methode \textit{isInitValueValid} mit Parameter vom Typ \textit{Long}},label=lst:validValueLong]
+/**
+ * This method has been defined to allow the sub-classes
+ * of SnmpInt to perform their own control at intialization time.
+ */
+boolean isInitValueValid(long v) {
+  if ((v < Integer.MIN_VALUE) || (v > Integer.MAX_VALUE)) {
+    return false;
+  }
+  return true;
+}
+\end{lstlisting}
+
+\subsubsection*{a) Was fällt Ihnen auf?}
+Beide Methoden unterscheiden sich ausschließlich in der Signatur: eine Variante prüft eine Integer-Variable, die andere eine Long-Variable. Die beiden Methodenrümpfe sind identisch, was gerade bei der Long-Variante überrascht. Erwarten würde man eine Prüfung auf den Long-Wertebereich. Tatsächlich wird aber auch ``nur'' auf den Integer-Wertebereich geprüft. \\
+Da ein Kommentar fehlt, lässt sich nicht sagen, ob es sich dabei um einen Fehler handelt. \\
+Überhaupt scheint die Prüfung des Wertebereichs bei Integer-Variante überflüssig, da der Compiler \textit{null} oder nicht initialisierte Integer-Werte als Parameter nicht zulässt. Ist eine Integervariable initialisiert, befindet sich der Wert im gültigen Bereich. Berechnungen wie
+$$2 \cdot Integer.MIN\_VALUE$$
+liefern zwar kein mathematisch korrektes Ergebnis, aber das Ergebnis ist ein gültiger Integerwert. \\
+Bei der Long-Variante kann die Überprüfung zum Beispiel dann sinnvoll sein, wenn man wissen will, ob man den Wert einer Long-Variable auch als Integer speichern kann. \\
+
+
+
+Konvertierung wäre möglich, würde aber Performance kosten
+
+Copy und Paste Fehler?
+
+
+\subsubsection*{a) Falls Sie ein Problem identifizieren, was würden Sie machen, um solche Probleme in der Zukunft zu vermeiden?}
+Mit Tests könnte man festellen, ob die Funktionen wie erwartet arbeiten: \hfill
+\begin{itemize}
+ \item Ist es richtig, dass die Long-Variante nur Werte im Integer-Bereich akzeptiert?
+ \item Gibt es Methoden, die 
+\end{itemize}
+
+
+Policies, Automatische Tests auf gleiche Methode und anderer Signatur, 4-Augen-Prinzip, in KOmmentaren auf diese Anomalie hinweise, falls sie korrekt ist
+
+
+\subsection*{c) Was könnte zu dem Problem geführt haben?}
+Copy und Paste Fehler
+Zwei Menschen am selben Problem? Unachtsamkeit beim Programmieren?
+
+
+\subsection*{a) Was fällt Ihnen auf?}
+
+a instanceof Blödsinn mit JavaDoc verweis
+cast von Attribute zu Attribute ist sinnlos.
+
+\subsection*{b) Machen Sie ggf. einen Vorschlag für verbesserten Code.}
+
+\end{document}

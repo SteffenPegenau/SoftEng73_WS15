@@ -1,0 +1,132 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{fullpage}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{newclude}
+
+\lstset{ %
+  %backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  %basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  %breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  %captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\bf,    % comment style
+  %deletekeywords={...},            % if you want to delete keywords from the given language
+  %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  %extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,                    % adds a frame around the code
+  %keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  %keywordstyle=\color{blue},       % keyword style
+  language=Java,                 % the language of the code
+  %otherkeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  %numbersep=5pt,                   % how far the line-numbers are from the code
+  %numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  %rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  %showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  %showstringspaces=false,          % underline spaces within strings only
+  %showtabs=false,                  % show tabs within strings adding particular underscores
+  %stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  %stringstyle=\color{mymauve},     % string literal style
+  tabsize=4,                       % sets default tabsize to 2 spaces
+  %title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+\begin{document}
+\hfill \\
+Adam Shafei \hfill Len Williamson \hfill Steffen Pegenau
+\section*{0. Übungszettel in Software Engineering}
+
+\subsection*{Aufgabe 3: Erste Berührungspunkte mit der JVM}
+\begin{lstlisting}[caption={Methode \textit{isInitValueValid} mit Parameter vom Typ
+\textit{Integer}},label=lst:validValueInt,language=Java]
+/**
+ * This method has been defined to allow the sub-classes
+ * of SnmpInt to perform their own control at intialization time.
+ */
+boolean isInitValueValid(int v) {
+  if ((v < Integer.MIN_VALUE) || (v > Integer.MAX_VALUE)) {
+    return false;
+  }
+  return true;
+}
+\end{lstlisting}
+\begin{lstlisting}[caption={Methode \textit{isInitValueValid} mit Parameter vom Typ \textit{Long}},label=lst:validValueLong]
+/**
+ * This method has been defined to allow the sub-classes
+ * of SnmpInt to perform their own control at intialization time.
+ */
+boolean isInitValueValid(long v) {
+  if ((v < Integer.MIN_VALUE) || (v > Integer.MAX_VALUE)) {
+    return false;
+  }
+  return true;
+}
+\end{lstlisting}
+
+\subsubsection*{a) Was fällt Ihnen auf?}
+Beide Methoden unterscheiden sich ausschließlich in der Signatur: eine Variante prüft eine Integer-Variable, die andere eine Long-Variable. Die beiden Methodenrümpfe sind identisch, was gerade bei der Long-Variante überrascht. Erwarten würde man eine Prüfung auf den Long-Wertebereich. Tatsächlich wird aber auch ``nur'' auf den Integer-Wertebereich geprüft. \\
+Da ein Kommentar fehlt, lässt sich nicht sagen, ob es sich dabei um einen Fehler handelt. \\
+Überhaupt scheint die Prüfung des Wertebereichs bei Integer-Variante überflüssig, da der Compiler \textit{null} oder nicht initialisierte Integer-Werte als Parameter nicht zulässt. Ist eine Integervariable initialisiert, befindet sich der Wert im gültigen Bereich. Berechnungen wie
+``$2 \cdot Integer.MIN\_VALUE$''
+liefern zwar kein mathematisch korrektes Ergebnis, aber das Ergebnis ist ein gültiger Integerwert. \\
+Bei der Long-Variante kann die auf den Integer-Wertbereich beschränkte Überprüfung zum Beispiel dann sinnvoll sein, wenn man wissen will, ob man den Wert einer Long-Variable auch als Integer speichern kann.
+\subsubsection*{a) Falls Sie ein Problem identifizieren, was würden Sie machen, um solche Probleme in der Zukunft zu vermeiden?}
+Mit automatischen Tests könnte man prüfen, ob\dots \hfill
+\begin{itemize}
+ \item es richtig ist, dass die Long-Variante nur Werte im Integer-Bereich akzeptiert
+ \item es Methoden mit weitgehend identischem Code gibt
+\end{itemize}
+Über Konvetionen könnte man dafür sorgen, dass solche wenig intuitiven Stellen entsprechend kommentiert werden. Um die Einhaltung zu garantieren, könne man den Commit-Prozess um eine Prüfung durch einen anderen Entwickler ergänzen.
+
+\subsection*{c) Was könnte zu dem Problem geführt haben?}
+Eventuell bestand spontan der Bedarf nach derselben Methode mit einer anderen Signatur, sodass die Methode einfach per Copy \& Paste kopiert wurde und dabei vergessen wurde, den Methoderumpf an allen Stellen zu prüfen und anzupassen. \\
+Bei der gegebenenfalls überflüssigen Prüfung des Wertebereichs dachte der Entwickler womöglich einfach zu kompliziert. Oder er wollte/konnte sich nicht auf die Typ-Garantie des Compilers verlassen.
+
+\begin{lstlisting}[caption={Methode \textit{containsValue}},label=lst:containsValue]
+/**
+ * Returns true if this attribute set contains the given
+ * attribute.
+ *
+ * @param	attribute  value whose presence in this attribute set is
+ *            to be tested.
+ *
+ * @return	true if this attribute set contains the given
+ *      attribute    value.
+ */
+public boolean containsValue(Attribute attribute) {
+  return
+    attribute != null &&
+    attribute instanceof Attribute &&
+    attribute.equals(attrMap.get(((Attribute)attribute).getCategory()));
+}
+\end{lstlisting}
+
+\subsection*{a) Was fällt Ihnen auf?}
+Da der Compiler beim Aufruf der Methode garantiert, dass der Parameter vom Typ \textit{Attribute} oder einer von diesem Typ erbenden Klasse ist, ist der Aufruf von \textit{instanceof} unnötig. Dasselbe gilt für den Cast in der letzten Überprüfung.
+
+\subsection*{b) Machen Sie ggf. einen Vorschlag für verbesserten Code.}
+\begin{lstlisting}[caption={Vorschlag für Methode \textit{containsValue}},label=lst:ChangedContainsValue]
+/**
+ * Returns true if this attribute set contains the given
+ * attribute.
+ *
+ * @param	attribute  value whose presence in this attribute set is
+ *            to be tested.
+ *
+ * @return	true if this attribute set contains the given
+ *      attribute    value.
+ */
+public boolean containsValue(Attribute attribute) {
+  return
+    attribute != null &&
+    attribute.equals(attrMap.get(attribute.getCategory()));
+}
+\end{lstlisting}
+\end{document}

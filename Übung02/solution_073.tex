@@ -1,0 +1,147 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{fullpage}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{newclude}
+\usepackage{multirow}
+\pagestyle{empty}
+
+
+\lstset{ %
+  %backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  %basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  %breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  %captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\bf,    % comment style
+  %deletekeywords={...},            % if you want to delete keywords from the given language
+  %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  %extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,                    % adds a frame around the code
+  %keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  %keywordstyle=\color{blue},       % keyword style
+  language=Java,                 % the language of the code
+  %otherkeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  %numbersep=5pt,                   % how far the line-numbers are from the code
+  %numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  %rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  %showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  %showstringspaces=false,          % underline spaces within strings only
+  %showtabs=false,                  % show tabs within strings adding particular underscores
+  %stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  %stringstyle=\color{mymauve},     % string literal style
+  tabsize=4,                       % sets default tabsize to 2 spaces
+  %title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+\begin{document}
+\hfill \\
+Adam Shafei \hfill Len Williamson \hfill Steffen Pegenau
+\section*{2. Übungszettel in Software Engineering}
+\subsection*{Teilaufgabe 1}
+\begin{tabular}{|p{0.25\linewidth}|p{0.7\linewidth}|}
+\hline
+ \textbf{Name} & Spielfeld variabler Größe \\
+ \hline
+ \textbf{Status} & Bereits mit der letzten Abgabe erledigt. \\
+ \hline
+\end{tabular}
+
+\subsection*{Teilaufgabe 2}
+\begin{tabular}{|p{0.25\linewidth}|p{0.7\linewidth}|}
+\hline
+ \textbf{Name} & Variable Spielerzahl \\
+ \hline
+ \textbf{Status} & Bereits mit der letzten Abgabe erledigt. \\
+ \hline
+\end{tabular}
+
+\subsection*{Teilaufgabe 3}
+\begin{tabular}{|p{0.25\linewidth}|p{0.7\linewidth}|}
+ \hline
+ \textbf{\textbf{Name}} & Menü um KI-Einstellung erweitern \\
+ \hline
+ \textbf{Motivation} & Die Einstellungsmöglichkeit ist Bedingung dafür, dass der Spieler mit/gegen KIs spielen kann.\\
+ \hline
+ \textbf{Funktion} & Beim Start des Spieles möchte ich als Spieler einstellen können, ob ich gegen natürliche Spieler und/oder gegen/mit Unterstützung einer KI spielen möchte. \\
+ \hline
+ \textbf{Akzeptanzkriterien} & Die möglichen Einstellungen muss der einstellende Spieler intuitiv verstehen.\\
+ \hline
+ \textbf{Schätzung} & 1,5 Stunden\\
+ \hline
+ \textbf{Begründung} & Wir wollen den Code in eine zusätzliche Klasse auslagern und vermuten Komplikationen bei der Integration in die bestehenden Abläufe. \\
+ \hline
+ \textbf{Tatsächlicher Aufwand} & Als problematisch erwiesen sich die vielen verschiedenen Spielmodi (Spieler mit/ohne Assistenz gegen KI Random oder Minmax)\\
+ \hline
+ \textbf{Reflektion} & 2\\
+ \hline
+\end{tabular}
+\subsection*{Teilaufgabe 4}
+\begin{tabular}{|p{0.25\linewidth}|p{0.7\linewidth}|}
+\hline
+ \textbf{Name} & Abstrakte KI-Klasse erstellen \\
+ \hline
+ \textbf{Motivation} & Es wird eine Schnittstelle für KIs mit verschiedenen Strategien benötigt. Außerdem soll Redundanz vermieden werden.\\
+ \hline
+ \textbf{Funktion} & Im Spielablauf sollen \-- unabhängig davon welche KI gerade am Zug ist \-- feste Methoden aufzurufen sein.\\
+ \hline
+ \textbf{Akzeptanzkriterien} & Auch wenn es weitere KIs geben soll, sollten sich an der eigentlichen Spiel-Engine keine Änderungen mehr ergeben.\\
+ \hline
+ \textbf{Schätzung} & 1 Stunde \\
+ \hline
+ \textbf{Begründung} & Es muss geprüft werden, welche Methoden die Abstrakte Klasse zur Verfügung stellen soll. \\
+ \hline
+ \textbf{Tatsächlicher Aufwand} & 1\\
+ \hline
+ \textbf{Reflektion} & Keine unerwarteten Probleme\\
+ \hline
+\end{tabular}
+\subsection*{Teilaufgabe 5}
+\begin{tabular}{|p{0.25\linewidth}|p{0.7\linewidth}|}
+\hline
+ \textbf{Name} & KIRandom Klasse erstellen (zufälliger Zug) \\
+ \hline
+ \textbf{Motivation} & Es soll eine KI geringer Schwierigkeitsstufe geben, die zufällig eine Mauer wählt.\\
+ \hline
+ \textbf{Funktion} & Ich will als Spieler gegen eine leichte KI spielen.\\
+ \hline
+ \textbf{Akzeptanzkriterien} & Die Züge der KI sollen zufällig wirken.\\
+ \hline
+ \textbf{Schätzung} & 1 Stunde \\
+ \hline
+ \textbf{Begründung} & Nicht besonders kompliziert. \\
+ \hline
+ \textbf{Tatsächlicher Aufwand} & 1\\
+ \hline
+ \textbf{Reflektion} & Keine unerwarteten Probleme\\
+ \hline
+\end{tabular}
+\subsection*{}
+\subsection*{Teilaufgabe 6}
+\begin{tabular}{|p{0.25\linewidth}|p{0.7\linewidth}|}
+\hline
+ \textbf{Name} & KIMinMax Klasse erstellen (Zug nach Min-Max-Algorithmus) \\
+ \hline
+ \textbf{Motivation} & Es soll eine KI mittlerer Schwierigkeit geben, die Züge nach dem Minimax-Algorithmus wählt.\\
+ \hline
+ \textbf{Funktion} & Ich will als Spieler gegen eine KI mittlerer Schwierigkeit spielen, die ihre Züge so wählt, dass für sie das optimale Ergebnis herauskommt, ohne meine Züge zu berücksichtigen.\\
+ \hline
+ \textbf{Akzeptanzkriterien} & Der Spieler soll eine gewisse Intelligenz hinter den Zügen erkennen können.\\
+ \hline
+ \textbf{Schätzung} & 4 Stunden\\
+ \hline
+ \textbf{Begründung} & Zunächst wird Einarbeitungszeit in den Algorithmus benötigt. Außerdem muss die gesamte Historie durchgespielt und gespeichert werden.\\
+ \hline
+ \textbf{Tatsächlicher Aufwand} & 8 Stunden\\
+ \hline
+ \textbf{Reflektion} & Die Einarbeitungszeit in den Algorithmus war zwar kürzer als erwartet. Dafür fiel uns unsere bisherige Implementierung der Karte auf die Füße. Die Auslagerung in eine Extraklasse, die alle benötigten Methoden implementiert kostete viel Zeit. Wir hoffen, dass die Neuimplementierung es uns erleichtert, zukünftige Anforderungen umzusetzen. \\
+ \hline
+\end{tabular}
+\end{document}

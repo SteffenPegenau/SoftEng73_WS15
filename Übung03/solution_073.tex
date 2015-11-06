@@ -1,0 +1,214 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{fullpage}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{newclude}
+\usepackage{multirow}
+\usepackage{longtable}
+%\pagestyle{empty}
+
+
+\lstset{ %
+  %backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  %basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  %breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  %captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\bf,    % comment style
+  %deletekeywords={...},            % if you want to delete keywords from the given language
+  %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  %extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,                    % adds a frame around the code
+  %keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  %keywordstyle=\color{blue},       % keyword style
+  language=Java,                 % the language of the code
+  %otherkeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  %numbersep=5pt,                   % how far the line-numbers are from the code
+  %numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  %rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  %showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  %showstringspaces=false,          % underline spaces within strings only
+  %showtabs=false,                  % show tabs within strings adding particular underscores
+  %stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  %stringstyle=\color{mymauve},     % string literal style
+  tabsize=4,                       % sets default tabsize to 2 spaces
+  %title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+\begin{document}
+\hfill \\
+Adam Shafei \hfill Len Williamson \hfill Steffen Pegenau
+\section*{3. Übungszettel in EiSE \-- Gruppe 073 \-- WiSe 2015/16}
+\subsection*{Aufgabe 1}
+\subsubsection*{a) Funktionale und nicht funktionale Anforderungen}
+\begin{longtable}{|p{0.47\linewidth}|p{0.47\linewidth}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Anforderungen}} \\
+\hline
+\textbf{funktional} & \textbf{nicht funktional} \\
+\hline
+\hline
+\multicolumn{2}{|c|}{\textbf{Allgemein}} \\
+\hline
+Design \& Bedienung an Endgerät angepasst & Hauptoptionen benutzerfreundlich im Hauptmenü erreichbar \\
+\hline
+Login mit Benutzernamen und PIN & Ansprechendes Design \\
+\hline
+Auto-Logout nach 30 Minuten Inaktivität & schnelle Antwortzeiten \\
+\hline
+Logout durch Nutzer & Anwendung sicher vor unerlaubtem Zugriff und allen Angriffen\\
+\hline
+Alle Eingaben und Ansichten sollen auch für Nutzer mit Sehbehinderung nutzbar sein & Dauerhafte Erreichbarkeit \\
+\hline
+Nutzer wird zu Beginn der Sitzung über etwaige Behinderung befragt & \\
+\hline
+\hline
+\multicolumn{2}{|c|}{\textbf{Überweisung}} \\
+\hline
+Nutzer kann Standard- oder Terminüberweisungen sowie Daueraufträge tätigen & Bedienerfreundliche Eingabe des Datums bei Terminüberweisungen \\
+\hline
+Ermittlung des Überweisungsziels mit IBAN oder Kontonummer/BLZ & \\
+\hline
+Eingabe Geldbetrag & \\
+\hline
+Eingabe Verwendungszweck/Kundenreferenznummer & \\
+\hline
+Abfrage des Überweisungstyps (Standard- oder Terminüberweisungen, Dauerauftrag) am Ende des Formulars (exklusive Auswahl) & \\
+\hline
+Validitätsprüfung aller Eingabe nach Abschicken des Formulars durch Nutzer & \\
+\hline
+Schlägt Validitätsprüfung fehl, wird Nutzer auf fehlende/fehlerhafte Eingaben aufmerksam gemacht & \\
+\hline
+Ist die Validitätsprüfung erfolgreich, bekommt Nutzer Zusammenfassung seiner Eingaben & \\
+\hline
+Abfrage der TAN (abhängig von TAN-Einstellung) & \\
+\hline
+Ist TAN korrekt wird Transaktion ausgeführt & \\
+\hline
+Nach Ausführung der Transaktion wird Nutzer gefragt, ob er weitere Überweisung tätigen will oder zurück zum Hauptmenü will & \\
+\hline
+Wurde die falsche TAN eingegeben, wird der Nutzer nach TAN-Verfahren zur Eingabe einer anderen, bestimmten TAN aufgefordert bis Prüfung erfolgreich oder der Nutzer die Überweisung abbricht & \\
+\hline
+\hline
+\multicolumn{2}{|c|}{\textbf{TAN-Einstellungen}} \\
+\hline
+Nutzer kann das verwendete TAN-Verfahren (mTAN, ChipTAN, TAN-Liste) ändern & \\
+\hline
+Bei mTAN wird dem Nutzer die TAN mit Zusammenfassung der Überweisung per SMS ans Handy geschickt & \\
+\hline
+Zum Wechsel zu mTAN muss der Nutzer seine Handynummer hinterlegen & \\
+\hline
+Bei ChipTAN erhält der Nutzer mit der Überweisungszusammenfassung einen Code, den er mit einer Chip-Karte ins Lesegerät eingibt. Das Lesegerät berechnet anschließend die TAN & \\
+\hline
+Nutzer kann neue TAN-Liste in den Einstellungen mit einer alten TAN anfordern & \\
+\hline
+Fordert der Nutzer eine neue TAN-Liste erfolgreich an werden alle aktiven TANs der alten Liste gesperrt. & \\
+\hline
+Sind nur noch 10 TANs einer Liste übrig, wird automatisch eine neue TAN-Liste per Post versandt & \\
+\hline
+Wird eine TAN einer neuen Liste genutzt, werden alle TANs der alten Liste gesperrt & \\
+\hline
+Kunde kann neue TAN-Liste telefonisch bei Service-Mitarbeiter anfordern, wenn alte Liste unauffindbar & \\
+\hline
+Service-Mitarbeiter haben auf alle Funktionalitäten des Kunden Zugriff &  \\
+\hline
+\hline
+\multicolumn{2}{|c|}{\textbf{Depot einsehen/Kontoauszüge}} \\
+\hline
+Kunden-Depot-Ansicht 1: Liste aller Transaktionen der letzten 30 Tage sowie Kontostand & Zeitraum gut ersichtlich\\
+\hline
+Kunden-Depot-Ansicht 2: Liste aller Transaktion sowie Kontostand in einem frei wählbaren Zeitraum & Zeitraum leicht veränderbar\\
+\hline
+\hline
+\end{longtable}
+
+\subsubsection*{b) Fragen zur Umsetzung nicht funktionaler Anforderungen}
+\begin{tabular}{|p{0.37\linewidth}|p{0.57\linewidth}|}
+\hline
+\textbf{Nicht funktionale Anforderung} & \textbf{Frage} \\
+\hline
+
+\hline
+\end{tabular}
+
+\subsection*{Aufgabe 2}
+\subsection*{Aufgabe 3}
+\subsubsection*{a) Use Case ``Funktionalität einer Überweisung''}
+\begin{tabular}{|p{0.37\linewidth}|p{0.57\linewidth}|}
+\hline
+\textbf{Use Case Abschnitt} & \textbf{Zweck} \\
+\hline
+Use Case Name & \\
+\hline
+Scope & \\
+\hline
+Level & \\
+\hline
+Primary Actor & \\
+\hline
+Stakeholders and Interests & \\
+\hline
+Preconditions & \\
+\hline
+Minimal guarantees & \\
+\hline
+Success Guarantee & \\
+\hline
+Main Success Scenario & \\
+\hline
+Extensions & \\
+\hline
+Special Requirements & \\
+\hline
+Technology and Data Variation List & \\
+\hline
+Frequency of Occurrence & \\
+\hline
+Miscellaneous & \\
+\hline
+\hline
+\end{tabular}
+
+\subsubsection*{b) Use Case ``Neue TAN-Liste Versenden''}
+\begin{tabular}{|p{0.37\linewidth}|p{0.57\linewidth}|}
+\hline
+\textbf{Use Case Abschnitt} & \textbf{Zweck} \\
+\hline
+Use Case Name & \\
+\hline
+Scope & \\
+\hline
+Level & \\
+\hline
+Primary Actor & \\
+\hline
+Stakeholders and Interests & \\
+\hline
+Preconditions & \\
+\hline
+Minimal guarantees & \\
+\hline
+Success Guarantee & \\
+\hline
+Main Success Scenario & \\
+\hline
+Extensions & \\
+\hline
+Special Requirements & \\
+\hline
+Technology and Data Variation List & \\
+\hline
+Frequency of Occurrence & \\
+\hline
+Miscellaneous & \\
+\hline
+\hline
+\end{tabular}
+\end{document}
