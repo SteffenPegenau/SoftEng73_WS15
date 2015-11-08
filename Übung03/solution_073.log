@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.9.12)  6 NOV 2015 18:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.9.12)  8 NOV 2015 12:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -460,8 +460,13 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 \c@lstlisting=\count114
 
-Underfull \hbox (badness 10000) in paragraph at lines 81--81
-[]|\T1/lmr/m/n/10 Eingabe Ver-wen-dungs-zweck/-Kun-den-re-fe-renz-
+Underfull \hbox (badness 10000) in paragraph at lines 83--83
+[]|\T1/lmr/m/n/10 Abfrage des ex-klu-si-ven Über-wei-sungs-typs
+ []
+
+
+Underfull \hbox (badness 3942) in paragraph at lines 83--83
+\T1/lmr/m/n/10 (Standard- oder Ter-min-über-wei-sun-gen, Dau-
  []
 
 
@@ -525,23 +530,28 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 133.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [2] [3] (./solution_073.aux) ) 
+)
+Underfull \hbox (badness 10000) in paragraph at lines 148--148
+[]\T1/lmr/m/n/10 Überweisung -- Be-diener-freund-li-che
+ []
+
+[2] [3] [4] (./solution_073.aux) ) 
 Here is how much of TeX's memory you used:
  3804 strings out of 494972
  47841 string characters out of 6179838
- 149091 words of memory out of 5000000
+ 150091 words of memory out of 5000000
  6973 multiletter control sequences out of 15000+600000
  34637 words of font info for 37 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 27i,8n,40p,229b,222s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-ec
-.enc}</usr/share/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf-
-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf-dist/fonts/type1/public
-/lm/lmr10.pfb>
-Output written on solution_073.pdf (3 pages, 94396 bytes).
+ 27i,9n,40p,381b,222s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-
+ec.enc}</usr/share/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/share/texm
+f-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf-dist/fonts/type1/publ
+ic/lm/lmr10.pfb>
+Output written on solution_073.pdf (4 pages, 97622 bytes).
 PDF statistics:
- 27 PDF objects out of 1000 (max. 8388607)
- 18 compressed objects within 1 object stream
+ 30 PDF objects out of 1000 (max. 8388607)
+ 20 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
