@@ -10,6 +10,7 @@
 \usepackage{newclude}
 \usepackage{multirow}
 \usepackage{longtable}
+\usepackage{graphicx}
 %\pagestyle{empty}
 
 
@@ -138,42 +139,55 @@ Allgemein \-- Hauptoptionen benutzerfreundlich im Hauptmenü erreichbar &  Was k
 \hline
 Allgemein \-- Ansprechendes Design & Welche Design-Richtlinien gibt es im Unternehmen? Wie groß sind die Freiheiten bei der Entwicklung der Oberfläche? \\
 \hline
-Allgemein \-- Schnelle Antwortzeiten & Was heißt ``schnell''? Soll der Zugriff weltweit, kontinental oder national ``schnell'' sein. 
+Allgemein \-- Schnelle Antwortzeiten & Was heißt ``schnell''? Werden bestimmte Antwortzeiten garantiert? Wird der Zugriff durch Kunden weltweit, kontinental oder national erfolgen?  Gibt es besondere Peaks in den Zugriffszahlen? Wie sehen die Wachstumszahlen beim Online-Banking aus? Wie sieht die Unternehmensstrategie bezüglich Online-Banking aus? \\
+\hline
+Allgemein \-- Anwendung sicher vor unerlaubtem Zugriff und allen Angriffen & Gibt es besondere Sicherheitsrichtlinien des Unternehmens? Gibt es Erfahrungen mit Sicherheitsbrüchen? (Wann) Soll ein externer Code-Review erfolgen? \\
+\hline
+Allgemein \-- Dauerhafte Erreichbarkeit & Was heißt dauerhaft? Gibt es rechtliche oder unternehmensinterne Regelungen? In welchem Umfang soll das Online-Banking über mehrere Server skalieren? \\
+\hline
+\hline
+Überweisung \-- Bedienerfreundliche Eingabe des Datums bei Terminüberweisungen & Gibt es Vorstellungen was bedienerfreundlich heißt bzw. was unbedingt vermieden werden sollte? Wieder: Gibt es Design-Richtlinien des Unternehmens? \\
+\hline
+\hline
+Depot einsehen/Kontoauszüge \-- Zeitraum gut ersichtlich & Wiederholung: Gibt es Vorstellungen was ``gut ersichtlich'' heißt bzw. was unbedingt vermieden werden sollte? Gibt es Design-Richtlinien des Unternehmens? \\
+\hline
+Depot einsehen/Kontoauszüge \-- Zeitraum leicht veränderbar & Wiederholung: Gibt es Vorstellungen was ``leicht veränderbar'' heißt bzw. was unbedingt vermieden werden sollte? Gibt es Design-Richtlinien des Unternehmens?\\
 \hline
 \end{tabular}
 
 \subsection*{Aufgabe 2}
+\includegraphics[width=0.95\linewidth]{Anwendungsfalldiagramm2}
 \subsection*{Aufgabe 3}
 \subsubsection*{a) Use Case ``Funktionalität einer Überweisung''}
 \begin{tabular}{|p{0.37\linewidth}|p{0.57\linewidth}|}
 \hline
 \textbf{Use Case Abschnitt} & \textbf{Zweck} \\
 \hline
-Use Case Name & \\
+Use Case Name & Tätigen einer Überweisung\\
 \hline
-Scope & \\
+Scope & Banking Portal \-- Unterpunkt Überweisung \\
 \hline
-Level & \\
+Level & User Ziel\\
 \hline
-Primary Actor & \\
+Primary Actor & Kunde\\
 \hline
-Stakeholders and Interests & \\
+Stakeholders and Interests & Kunde \-- will Überweisungen tätigen, Bank \-- will vollständige Angaben zur Überweisung\\
 \hline
-Preconditions & \\
+Preconditions & Der Kunde hat sich authentifiziert und einen Überweisungstyp gewählt\\
 \hline
-Minimal guarantees & \\
+Minimal guarantees & Es ist dem Kunden jederzeit klar, ob er eine Überweisung tätigen kann und wenn er es versucht, ab wann die Überweisung tatsächlich durchgeführt wird\\
 \hline
-Success Guarantee & \\
+Success Guarantee & Überweist der Kunde Geld, wird diese Transaktion den EIngaben entsprechend durchgeführt, auf allen beteiligten Konten vermerkt und mit einem Log-Eintrag vermerkt.\\
 \hline
-Main Success Scenario & \\
+Main Success Scenario & 1. Der Kunde wählt im Web-Interface die Option, eine Überweisung aufzugeben \newline 2. Der Kunde gibt das Ziel der Überweisung in Form einer IBAN oder einer Kontonummer/Bankleitzahl-Kombination an. \newline 3. Der Kunde gibt den Geldbetrag an \newline 4. Der Kunde gibt einen Verwendungszweck bzw. eine Kundenreferenznummer an \newline 5. Der Kunde wählt exklusiv, ob die Überweisung sofort, zu einem bestimmten Termin oder regelmäßig erfolgen soll \newline 6. Der Kunde sendet das Formular ab \newline 7. Das System validiert die Eingaben, gibt dem Kunden ggf. Gelegenheit zur Korrektur und leitet bei korrekten Eingaben zur Zusammenfassungsseite weiter \newline 8. Das System gibt dem Kunden auf der Zusammenfassungsseite Auskunft über seine Angaben und fragt \-- abhängig vom gewählten Verfahren \-- die TAN ab bis die Eingabe entweder korrekt ist oder der Kunde die Überweisung abbricht \newline 9. Wurde die richtige TAN eingegeben gibt das System die Überweisung in Auftrag, bestätigt dem Kunden die Überweisung und bietet an, eine weitere Überweisung in Auftrag zu geben oder zum Hauptmenü zurück zu kehren\\
 \hline
-Extensions & \\
+Extensions & Der Kunde kann Empfänger in einer Liste speichern und bei erneuten Überweisungen schnell auswählen (steht nicht im Text, aber sonst ist uns keine Erweiterung eingefallen) \\
 \hline
-Special Requirements & \\
+Special Requirements & Der Kunde hat je nach gewähltem Verfahren die Möglichkeit die richtige TAN einzugeben \\
 \hline
-Technology and Data Variation List & \\
+Technology and Data Variation List & Ggf. könnte es in Zukunft eine App geben, mit der man Überweisungen tätigen kann (steht nicht im Text) \\
 \hline
-Frequency of Occurrence & \\
+Frequency of Occurrence & Täglich sehr häufig \\
 \hline
 Miscellaneous & \\
 \hline
