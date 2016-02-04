@@ -1,0 +1,10 @@
+Korrektur - ex12 - group 46
+-----------------------
+
+Aufgabe 1: 8 / 10 Punkten 
+	c)
+	- 2 Punkte: Es ist in dem Sequenzdiagramm nicht ersichtlich wann denn nun genau die Listener über eine Veränderung des Lernfortschritts informiert werden, d.h. wann genau notifyListeners bzw. learnProgressChange aufgerufen wird.
+
+-----------------------
+Tutor: Jörg Suckut <mail@jsuckut.de>
+Sprechstunde: Mo. 13:00 Uhr, C-Pool
